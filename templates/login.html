@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <form method="POST" action="/login", >
+    <label for="inp-name" id="lbl-name">Enter your name</label>
+    <input type="text" name="name" id="inp-name" placeholder="Enter your name">
+    <button type="submit" id="btn-submit">Submit</button>
+  </form>
+{% endblock %}

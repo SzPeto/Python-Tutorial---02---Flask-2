@@ -1,0 +1,61 @@
+header {
+    background-color: rgb(215, 215, 255);
+    text-align: center;
+}
+
+body {
+    font-family: Segoe UI;
+    background-color: rgb(240, 240, 255);
+}
+
+footer {
+    background-color: rgb(215, 215, 255);
+}
+
+button {
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(235, 235, 235));
+    border-radius: 4px;
+    padding: 6px 12px;
+    border: 1px solid rgb(181, 181, 181);
+}
+
+button:hover {
+    background: linear-gradient(to bottom, rgb(235, 235, 235), rgb(215, 215, 215));
+}
+
+button:active {
+    background: linear-gradient(to bottom, rgb(215, 215, 215), rgb(195, 195, 195));
+    border: 1px inset rgb(116, 116, 116);
+}
+
+.h-box-main {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-1 {
+    display: grid;
+    grid-template-columns: 150px 1fr; /*First column is 150px wide Second column takes up all the remaining space (fr stands for fraction of available space)*/
+    gap: 15px 20px; /* row gap, column gap */
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 340px;
+    text-align: left;
+}
+
+.login-div {
+    text-align: right;
+    margin-right: 50px;
+}
+
+#add-button {
+    font-size: 25px;
+    padding: 5px 25px;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+#add-button:hover {
+
+}
