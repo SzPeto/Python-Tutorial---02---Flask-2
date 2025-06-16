@@ -14,7 +14,6 @@
         </div>
 
         <form method="POST" action="/">
-
             <div class="h-box-main">
 
                 <div class="grid-1">
@@ -33,10 +32,9 @@
                 </div>
 
             </div>
-
         </form>
 
-        {% if entries | length < 1 %}
+        {% if not entries %}
             <p>There are no entries, add the first entry ...</p>
 
         {% else %}

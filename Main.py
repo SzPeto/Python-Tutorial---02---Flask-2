@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from flask import Flask, request, render_template, session
 from flask_sqlalchemy import SQLAlchemy
@@ -7,12 +8,11 @@ from werkzeug.utils import redirect
 from functions import Functions
 
 # Master
-is_first_log = True
-functions = Functions()
 app = Flask(__name__)
 app.secret_key = "Peter"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 db = SQLAlchemy(app)
+functions = Functions()
 
 # Routes
 @app.route("/", methods = ["GET", "POST"])
@@ -20,9 +20,16 @@ def index():
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     if request.method == "POST":
         if request.form.get("event") == "add-entry":
-            pass
+            mileage = request.form.get("mileage")
+            date = request.form.get("date")
+            description = request.form.get("description")
+            price = request.form.get("price")
+            new_entry = DbData(mileage = mileage, date = date, description = description, price = price)
+            db.session.add(new_entry)
+            db.session.commit()
 
-    return render_template("index.html", today = today)
+    entries = DbData.query.order_by(DbData.mileage).all()
+    return render_template("index.html", today = today, entries = entries)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -53,6 +60,7 @@ class DbData(db.Model):
         return f"Entry : {self.id}"
 
 if __name__ == "__main__":
-    app.run(debug = True)
     with app.app_context():
         db.create_all()
+
+    app.run(debug = True)
